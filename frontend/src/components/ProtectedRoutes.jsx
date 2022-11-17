@@ -18,7 +18,8 @@ const ProtectedRoutes = () => {
       case true:
         return <Outlet />;
       case false:
-        return <Navigate to="/auth" />;
+        // return <Navigate to="/auth" />;
+        return <Outlet />;
     }
   };
 
