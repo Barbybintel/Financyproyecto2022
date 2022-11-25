@@ -43,6 +43,7 @@ model Transaction {
   transactionCategoryId Int
   wallet                Wallet              @relation(fields: [walletId], references: [id])
   walletId              Int
+  type                  Int
 }
 
 model TransactionCategory {

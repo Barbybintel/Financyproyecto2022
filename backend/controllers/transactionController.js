@@ -21,6 +21,7 @@ const transaction_post = async (req, res) => {
           info: req.body.info,
           transactionCategoryId: req.body.transactionCategoryId,
           walletId: wallet.id,
+          type: req.body.type,
         },
       });
       res.status(200).send("success");
@@ -74,6 +75,7 @@ const transactions_get = async (req, res) => {
           date: true,
           info: true,
           id: true,
+          type: true,
           category: {
             select: {
               name: true,

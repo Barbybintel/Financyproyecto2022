@@ -26,23 +26,35 @@ const categories_transaction_sum = async (req, res) => {
     }
 
     try {
-      const transactions = await prisma.transaction.groupBy({
-        by: ["transactionCategoryId"],
-        _sum: {
-          money: true,
-        },
+      const categories = await prisma.transactionCategory.findMany({
         where: {
           wallet: {
-            userId: req.session.userId,
+            userId: req.session.userId
           },
           date: {
             gte: firstDate,
             lt: lastDate,
           },
-        },
-      });
-      res.send(transactions);
-    } catch {
+        }
+      })
+      const tr = await prisma.transaction.findMany({
+        where: {
+          wallet: {
+            userId: req.session.userId
+          },
+          date: {
+            gte: firstDate,
+            lt: lastDate,
+          },
+        }
+      })
+      for (let category of categories) category.sum = 0
+      for(let transaction of tr) {
+       
+      }
+      res.send();
+    } catch (err){
+      console.log(err)
       res.status(400).send("Err");
     }
   }
