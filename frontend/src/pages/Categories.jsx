@@ -170,6 +170,7 @@ const Categories = () => {
                     date={DateTime.fromISO(transaction.date).toISODate()}
                     description={transaction.info}
                     title={transaction.title}
+                    type={transaction.type}
                   />
                 );
               })}

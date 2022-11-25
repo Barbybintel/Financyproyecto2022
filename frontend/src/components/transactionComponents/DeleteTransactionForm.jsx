@@ -83,6 +83,7 @@ const DeleteTransactionForm = () => {
                     description={`id : ${tr.id}title: ${tr.title} ${tr.info}`}
                     date={DateTime.fromISO(tr.date).toISODate()}
                     title={tr.title}
+                    type={tr.type}
                   />
                   <div
                     className={styles.iconContainer}

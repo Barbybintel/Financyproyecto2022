@@ -13,6 +13,7 @@ import { queryClient } from "../../constants/config";
 const AddTransactionForm = () => {
   const [title, setTitle] = useState("");
   const [money, setMoney] = useState("");
+  const [type, setType ] = useState("1");
   const [date, setDate] = useState(DateTime.now().toISODate());
   const [info, setInfo] = useState("");
   const [category, setCategory] = useState(10);
@@ -37,6 +38,7 @@ const AddTransactionForm = () => {
     date: date,
     info: info,
     transactionCategoryId: parseInt(category),
+    type: parseInt(type),
   };
 
   return (
@@ -55,6 +57,27 @@ const AddTransactionForm = () => {
           onChange={(e) => setMoney(e.target.value)}
           value={money}
         />
+         <select
+                name="type"
+                onChange={(e) => {
+                  setType(e.target.value);
+                }}
+              >
+                
+                <option
+                  value="1"
+
+                  defaultValue
+                    
+                >
+                  Ingreso
+                </option>
+                <option value="-1"
+
+                >
+                  Egreso
+                </option>
+              </select>
         <input
           type="date"
           placeholder="date"

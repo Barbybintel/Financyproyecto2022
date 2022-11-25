@@ -45,7 +45,8 @@ const Home = () => {
                   <CategoryCard
                     key={index}
                     category={category.transactionCategoryId}
-                    money={category._sum.money.toFixed(2)}
+                    money={category._sum && category._sum.toFixed(2)}
+                   
                   />
                 );
               })}
@@ -67,6 +68,7 @@ const Home = () => {
                     money={transaction.money.toFixed(2)}
                     description={transaction.info}
                     title={transaction.title}
+                    type={transaction.type}
                   />
                 );
               })}

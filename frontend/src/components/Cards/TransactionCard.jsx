@@ -62,7 +62,7 @@ CategoryIcon.defaultProps = {
   category: "Products",
 };
 
-const TransactionCard = ({ category, date, money, description, title }) => {
+const TransactionCard = ({ category, date, money, description, title, type }) => {
   const [visible, setVisible] = useState(false);
   return (
     <div className={styles.container}>
@@ -86,7 +86,7 @@ const TransactionCard = ({ category, date, money, description, title }) => {
 
         {/* MONEY */}
         <div className={styles.moneyContainer}>
-          <span>{`-$${money}`}</span>
+          <span>{`${type === -1 ? "-":""}$${money}`}</span>
           <div
             className={styles.iconContainer}
             onClick={() => setVisible(!visible)}
