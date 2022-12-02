@@ -44,8 +44,9 @@ const Home = () => {
                 return (
                   <CategoryCard
                     key={index}
-                    category={category.transactionCategoryId}
-                    money={category._sum && category._sum.toFixed(2)}
+                    category={category.id}
+                    money={category.sum && category.sum.toFixed(2)}
+                    {...category}
                    
                   />
                 );

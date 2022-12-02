@@ -26,17 +26,7 @@ const categories_transaction_sum = async (req, res) => {
     }
 
     try {
-      const categories = await prisma.transactionCategory.findMany({
-        where: {
-          wallet: {
-            userId: req.session.userId
-          },
-          date: {
-            gte: firstDate,
-            lt: lastDate,
-          },
-        }
-      })
+      const categories = await prisma.transactionCategory.findMany()
       const tr = await prisma.transaction.findMany({
         where: {
           wallet: {
@@ -48,11 +38,17 @@ const categories_transaction_sum = async (req, res) => {
           },
         }
       })
+      console.log(categories, tr);
       for (let category of categories) category.sum = 0
       for(let transaction of tr) {
-       
+       for(let category of categories) {
+        if(category.id == transaction.transactionCategoryId) {
+          if (transaction.type === 1) category.sum += transaction.money;
+          else category.sum -= transaction.money;
+        }
+       }
       }
-      res.send();
+      res.send(categories);
     } catch (err){
       console.log(err)
       res.status(400).send("Err");
